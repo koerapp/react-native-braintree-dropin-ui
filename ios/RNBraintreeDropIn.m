@@ -12,9 +12,9 @@ RCT_EXPORT_MODULE(RNBraintreeDropIn)
 RCT_EXPORT_METHOD(show:(NSDictionary*)options resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
 {
 
-    if([options[@"darkTheme"] boolValue]){
-        [BTUIKAppearance darkTheme];
-    }
+    // if([options[@"darkTheme"] boolValue]){
+    //     [BTUIKAppearance darkTheme];
+    // }
 
     self.resolve = resolve;
     self.reject = reject;
@@ -29,16 +29,16 @@ RCT_EXPORT_METHOD(show:(NSDictionary*)options resolver:(RCTPromiseResolveBlock)r
     BTDropInRequest *request = [[BTDropInRequest alloc] init];
 
     NSDictionary* threeDSecureOptions = options[@"threeDSecure"];
-    if (threeDSecureOptions) {
-        NSNumber* threeDSecureAmount = threeDSecureOptions[@"amount"];
-        if (!threeDSecureAmount) {
-            reject(@"NO_3DS_AMOUNT", @"You must provide an amount for 3D Secure", nil);
-            return;
-        }
+    // if (threeDSecureOptions) {
+    //     NSNumber* threeDSecureAmount = threeDSecureOptions[@"amount"];
+    //     if (!threeDSecureAmount) {
+    //         reject(@"NO_3DS_AMOUNT", @"You must provide an amount for 3D Secure", nil);
+    //         return;
+    //     }
 
-        request.threeDSecureVerification = YES;
-        request.amount = [threeDSecureAmount stringValue];
-    }
+    //     request.threeDSecureVerification = YES;
+    //     request.amount = [threeDSecureAmount stringValue];
+    // }
 
     BTAPIClient *apiClient = [[BTAPIClient alloc] initWithAuthorization:clientToken];
     self.dataCollector = [[BTDataCollector alloc] initWithAPIClient:apiClient];
